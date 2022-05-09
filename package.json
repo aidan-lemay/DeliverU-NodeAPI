@@ -1,0 +1,22 @@
+{
+  "name": "api-node",
+  "version": "1.0.0",
+  "description": "DormDash Node API",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RITDormDash/API-Node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RITDormDash/API-Node/issues"
+  },
+  "homepage": "https://github.com/RITDormDash/API-Node#readme",
+  "dependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
