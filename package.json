@@ -1,10 +1,11 @@
 {
   "name": "api-node",
   "version": "1.0.0",
-  "description": "DormDash Node API",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,9 @@
   },
   "homepage": "https://github.com/RITDormDash/API-Node#readme",
   "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.3",
     "nodemon": "^2.0.16"
   }
 }
