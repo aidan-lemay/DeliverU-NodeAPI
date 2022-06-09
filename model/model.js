@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const dataSchema = new mongoose.Schema({
+const orderSchema = new mongoose.Schema({
     locationCode: {
         required: true,
         type: Number
@@ -13,11 +13,6 @@ const dataSchema = new mongoose.Schema({
         required: false,
         type: Number,
         default: 0
-    },
-    acceptableOrder: {
-        required: false,
-        type: Boolean,
-        default: false
     },
     requestTime: {
         required: true,
@@ -61,4 +56,51 @@ const dataSchema = new mongoose.Schema({
 
 })
 
-module.exports = mongoose.model('Orders', dataSchema)
+const locationSchema = new mongoose.Schema({
+    locationName: {
+        required: true,
+        type: String
+    },
+    locationCode: {
+        required: true,
+        type: Number
+    },
+    mainAddress: {
+        required: true,
+        type: String
+    }
+})
+
+const clockedSchema = new mongoose.Schema({
+    user_id: {
+        required: true,
+        type: Number
+    },
+    user_name: {
+        required: true,
+        type: String
+    },
+    user_discriminator: {
+        required: true,
+        type: String
+    },
+    clockedIn: {
+        required: true,
+        type: Boolean
+    },
+    in_time: {
+        required: true,
+        type: Date
+    },
+    out_time: {
+        required: true,
+        type: Date
+    }
+
+})
+
+const Orders = mongoose.model('orders', orderSchema)
+const Locations = mongoose.model('locationCodes', locationSchema)
+const Clocked = mongoose.model('clockedIn', clockedSchema)
+
+module.exports = {Orders, Locations, Clocked}
