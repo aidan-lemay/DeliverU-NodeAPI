@@ -27,26 +27,28 @@ async function runDispatch(id) {
     const Channel = client.channels.cache.get(orders);
     if (!Channel) return console.log("Invalid channel.");
 
-    Channel.send("<@&" + clockedin + "> A New Order Has Been Submitted!\nFROM: " + order.diningAddress + "\nTO: " + order.deliveryAddress + "\nReact with :white_check_mark: to claim!")
+    // Channel.send(id + "\n<@&" + clockedin + "> A New Order Has Been Submitted!\nFROM: " + order.diningAddress + "\nTO: " + order.deliveryAddress + "\nReact with :white_check_mark: to claim!")
+    Channel.send(id + "\n<@&" + clockedin + "> A New Order Has Been Submitted!\nReact with :white_check_mark: to claim!")
     .then(function (message) {
-        message.react("✅")
+        message.react("✅");
     }).catch(function() {
         //Something
     });
 }
 
-client.on('messageReactionAdd', (reaction, user) => {
-    if(reaction.emoji.name === "white_checK_mark") {
-        console.log(reaction.users);
-        console.log(user);
-    }
-});
+// Idea: Attach 'id' to the first line of the message
+// Have control listen for reactions, then dispatch accordingly
+
+
 
 router.post('/', async (req, res) => {
-    const id = req.query.id;
+    const id = req.body.id;
     const updatedData = req.body;
 
+    // ERROR CHECKING!!!!!
+
     Orders.updateOne({ "_id": id }, updatedData, function (err, result) {
+        console.log(req.body.id);
         if (err !== null) {
             res.status(500).json(err);
         }
