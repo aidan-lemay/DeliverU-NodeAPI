@@ -128,9 +128,6 @@ router.get('/', async (req, res) => {
         await costCalculate().then(
             function(value) {cost = value}
         );
-        await acceptOrder().then(
-            function(value) {accept = value}
-        );
 
         const data = new Orders({
             locationCode: req.body.locationCode,
