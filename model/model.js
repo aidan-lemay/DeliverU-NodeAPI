@@ -47,6 +47,11 @@ const orderSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    dasherID: {
+        required: false,
+        type: Number,
+        default: null
+    },
     acceptTime: {
         required: false,
         type: Date,
