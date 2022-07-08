@@ -7,10 +7,8 @@ const { Intents } = require('discord.js');
 
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
 
-const guild = "979541976938598410";
 const control = "984459945900662784";
-const orders = "984464477019844639";
-const clockedin = "984463229466075136";
+const orders = "993327814482874479";
 
 client.on('ready', async () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -26,20 +24,11 @@ async function runDispatch(id) {
 
     const Channel = client.channels.cache.get(orders);
     if (!Channel) return console.log("Invalid channel.");
-
-    // Channel.send(id + "\n<@&" + clockedin + "> A New Order Has Been Submitted!\nFROM: " + order.diningAddress + "\nTO: " + order.deliveryAddress + "\nReact with :white_check_mark: to claim!")
-    Channel.send(id + "\n<@&" + clockedin + "> A New Order Has Been Submitted!\nReact with :white_check_mark: to claim!")
-    .then(function (message) {
-        message.react("✅");
-    }).catch(function() {
-        //Something
-    });
+    Channel.send(id + " | " + Date.now());
 }
 
 // Idea: Attach 'id' to the first line of the message
 // Have control listen for reactions, then dispatch accordingly
-
-
 
 router.post('/', async (req, res) => {
     const id = req.body.id;
@@ -48,7 +37,6 @@ router.post('/', async (req, res) => {
     // ERROR CHECKING!!!!!
 
     Orders.updateOne({ "_id": id }, updatedData, function (err, result) {
-        console.log(req.body.id);
         if (err !== null) {
             res.status(500).json(err);
         }
