@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
             res.status(500).json(err);
         }
         else {
-            res.status(200).json({"orderStatus": "Accepted"});
+            res.status(200).json({"id": id, "orderAccepted": "True"});
             runDispatch(id);
         }
     });
