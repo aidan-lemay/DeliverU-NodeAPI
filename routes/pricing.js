@@ -6,7 +6,7 @@ require('dotenv').config();
 const { Orders, Locations, Clocked } = require('../model/model');
 
 const router = express.Router();
-const projection = {acceptableOrder: 0, locationCode: 0, requestTime: 0, orderComplete: 0, customerName: 0, customerPhone: 0, customerInstructions: 0, dasherAssigned: 0, acceptTime: 0, completeTime: 0, __v: 0};
+const projection = {locationCode: 0, requestTime: 0, orderComplete: 0, customerName: 0, customerPhone: 0, customerInstructions: 0, dasherAssigned: 0, dasherID: 0, acceptTime: 0, completeTime: 0, __v: 0};
 
 var src = null;
 var gDin = null;
@@ -139,8 +139,8 @@ router.get('/', async (req, res) => {
     
         try {
             const dta = await data.save();
-            const dataToSave = await Orders.find({"_id": dta._id}, projection);
-            res.status(200).json(dataToSave)
+            const dataToSave = await Orders.findOne({"_id": dta._id}, projection);
+            res.status(200).json({"id": dataToSave._id, "diningAddress": dataToSave.diningAddress, "deliveryAddress": dataToSave.deliveryAddress, "orderCost": dataToSave.orderCost})
         }
         catch (error) {
             res.status(400).json({message: error.message})

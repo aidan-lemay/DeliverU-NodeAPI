@@ -8,6 +8,7 @@ const mongoString = process.env.DATABASE_URL;
 // Routes
 const pricing = require('./routes/pricing');
 const order = require('./routes/order');
+const status = require('./routes/status');
 
 app.use(express.json());
 
@@ -25,6 +26,7 @@ db.once('connected', () => {
 // Methods
 app.use('/pricing', pricing);
 app.use('/order', order);
+app.use('/status', status);
 
 app.listen(3000, () => {
     console.log(`Server Started at ${3000}`)

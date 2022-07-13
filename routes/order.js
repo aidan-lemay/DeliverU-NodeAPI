@@ -3,7 +3,6 @@ const router = express.Router();
 const { Orders, Locations, Clocked } = require('../model/model');
 require('dotenv').config(); //initialize dotenv
 const Discord = require('discord.js'); //import discord.js
-const { Intents } = require('discord.js');
 
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
 
@@ -27,9 +26,6 @@ async function runDispatch(id) {
     Channel.send(id + " | " + Date.now());
 }
 
-// Idea: Attach 'id' to the first line of the message
-// Have control listen for reactions, then dispatch accordingly
-
 router.post('/', async (req, res) => {
     const id = req.body.id;
     const updatedData = req.body;
@@ -41,7 +37,7 @@ router.post('/', async (req, res) => {
             res.status(500).json(err);
         }
         else {
-            res.status(200).json(result);
+            res.status(200).json({"id": id, "orderAccepted": "True"});
             runDispatch(id);
         }
     });
