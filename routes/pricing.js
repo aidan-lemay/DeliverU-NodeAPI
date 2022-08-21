@@ -8,13 +8,13 @@ const { Orders, Locations, Clocked } = require('../model/model');
 const router = express.Router();
 const projection = {locationCode: 0, requestTime: 0, orderComplete: 0, customerName: 0, customerPhone: 0, customerInstructions: 0, dasherAssigned: 0, dasherID: 0, acceptTime: 0, completeTime: 0, __v: 0};
 
-var src = null;
-var gDin = null;
-var gDist = null;
+let src = null;
+let gDin = null;
+let gDist = null;
 
 // Data Validation Functions
 async function checkLocation(locCode) {
-    var loc = await Locations.find({"locationCode": locCode}, {_id: 0});
+    let loc = await Locations.find({"locationCode": locCode}, {_id: 0});
 
     if (loc[0] == undefined) {
         return Promise.resolve(false);
@@ -32,7 +32,7 @@ async function checkDinAddress(dinAddr) {
     return new Promise(function (resolve, reject) {
         axios.get(query).then(
             (response) => {
-                var result = response.data.rows[0].elements[0].distance.text;
+                let result = response.data.rows[0].elements[0].distance.text;
                 const distance = result.split(" ");
 
                 if (distance[0] > 10.0) {
@@ -55,7 +55,7 @@ async function checkDelAddress(delAddr) {
     return new Promise(function (resolve, reject) {
         axios.get(query).then(
             (response) => {
-                var result = response.data.rows[0].elements[0].distance.text;
+                let result = response.data.rows[0].elements[0].distance.text;
                 const distance = result.split(" ");
                 gDist = distance[0];
 
@@ -95,9 +95,9 @@ async function costCalculate() {
 
 //Get all Method
 router.get('/', async (req, res) => {
-    var locR;
-    var dinR;
-    var delR;
+    let locR;
+    let dinR;
+    let delR;
 
     await checkLocation(req.body.locationCode).then(
         function(value) {locR = value},
@@ -123,8 +123,8 @@ router.get('/', async (req, res) => {
         res.status(400).json({"error": "Error in deliveryAddress, please check your input"});
     }
     else {
-        var cost = 5;
-        var accept = false;
+        let cost = 5;
+        let accept = false;
         await costCalculate().then(
             function(value) {cost = value}
         );
