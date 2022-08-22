@@ -7,23 +7,39 @@ let ObjectId = require("bson-objectid");
 
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
 
-const control = "984459945900662784";
-const orders = "993327814482874479";
+const channels = {
+    2760: {
+        "order-logging": "993327814482874479", // ID of PRIVATE #order-logging
+        "control-channel": "984459945900662784", // ID of PRIVATE #bot-control
+    },
+    5816: {
+        "order-logging": "1001225840463446138", // ID of PRIVATE #order-logging
+        "control-channel": "1001225821169651802", // ID of PRIVATE #bot-control
+    }
+};
 
 client.on('ready', async () => {
     console.log(`Logged in as ${client.user.tag}!`);
-    const Channel = client.channels.cache.get(control);
-    if (!Channel) return console.log("Invalid channel.");
 
-    Channel.send("DeliverU Dispatch is Online!");
+    for (let l in channels) {
+        const Channel = client.channels.cache.get(channels[l]['control-channel']);
+        if (!Channel) return console.log("Invalid channel.");
+
+        Channel.send("DeliverU Dispatch is Online!");
+    };
+    
 });
 
-async function runDispatch(id) {
+async function runDispatch(id, locationCode) {
+
+    let orders = channels[locationCode]['order-logging']
 
     const order = await Orders.findOne({"_id": ObjectId(id)});
-    const Channel = client.channels.cache.get(orders);
-    if (!Channel) return console.log("Invalid channel.");
-    Channel.send(id + " | " + Date.now());
+    if (order != undefined) {
+        const Channel = client.channels.cache.get(orders);
+        if (!Channel) return console.log("Invalid channel.");
+        Channel.send(id + " | " + Date.now());
+    }
     
 }
 
@@ -44,7 +60,7 @@ router.post('/', async (req, res) => {
             }
             else {
                 res.status(200).json({"id": id, "orderAccepted": "True"});
-                runDispatch(id);
+                runDispatch(id, order.locationCode);
             }
         });
     }
