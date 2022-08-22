@@ -59,7 +59,7 @@ async function checkDelAddress(delAddr) {
                 const distance = result.split(" ");
                 gDist = distance[0];
 
-                if (distance[0] > 10.0) {
+                if (distance[0] > 20000.0) {
                     resolve(false);
                 }
                 else {
@@ -124,7 +124,6 @@ router.get('/', async (req, res) => {
     }
     else {
         let cost = 5;
-        let accept = false;
         await costCalculate().then(
             function(value) {cost = value}
         );
