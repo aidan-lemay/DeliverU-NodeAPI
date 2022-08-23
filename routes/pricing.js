@@ -78,23 +78,27 @@ async function costCalculate() {
     const volume = await Orders.find({"orderComplete": false}).count(); // Number of Unfufilled Orders
     const online = await Clocked.find({"clockedIn": true}).count(); // Number of Dashers
 
-    if (gDist > 5.0) {
-        return Promise.resolve(6);
+    let basePrice = 6.00 + Math.random() * (max - min) + min;
+
+    if (gDist < 800) { // Less than 1/2 Mile
+        return Promise.resolve(basePrice);
     }
-    else if (time.getHours() > 16) {
-        return Promise.resolve(6);
+    else if (gDist > 800 && gDist < 1600) { // Greater than 1/2 Mile but less than 1 Mile
+        return Promise.resolve(basePrice + 1.25);
     }
-    else if (volume > online) {
-        return Promise.resolve(10);
+    else if (gDist > 1600 && gDist < 2400) { // Greater than 1 Mile but less than 1.5 Mile
+        return Promise.resolve(basePrice + 2.50);
     }
-    else {
-        return Promise.resolve(5);
+    else if (gDist > 2400 && gDist < 3200) { // Greater than 1.5 Mile but less than 2 Mile
+        return Promise.resolve(basePrice + 3.75);
+    }
+    else if (gDist > 3200 && gDist < 8000) {
+        return Promise.resolve(basePrice + 5.00);
     }
 
 }
 
-//Get all Method
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
     let locR;
     let dinR;
     let delR;
