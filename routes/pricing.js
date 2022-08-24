@@ -78,7 +78,7 @@ async function costCalculate() {
     const volume = await Orders.find({"orderComplete": false}).count(); // Number of Unfufilled Orders
     const online = await Clocked.find({"clockedIn": true}).count(); // Number of Dashers
 
-    let basePrice = 6.00 + Math.random() * (max - min) + min;
+    let basePrice = 6.00 + Math.random() * (0.01 - 0.50) + min;
 
     if (gDist < 800) { // Less than 1/2 Mile
         return Promise.resolve(basePrice);
