@@ -44,8 +44,8 @@ async function runDispatch(id, locationCode) {
 }
 
 router.post('/', async (req, res) => {
-    const id = req.query.id;
-    const updatedData = req.body;
+    const id = req.body.id;
+    const updatedData = req.body.data;
 
     // ERROR CHECKING!!!!!
     const order = await Orders.findOne({_id: ObjectId(id)});
