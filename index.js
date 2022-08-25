@@ -7,6 +7,7 @@ const mongoString = process.env.DATABASE_URL;
 
 // Routes
 const pricing = require('./routes/pricing');
+const getPrice = require('./routes/getPrice');
 const order = require('./routes/order');
 const status = require('./routes/status');
 
@@ -25,6 +26,7 @@ db.once('connected', () => {
 
 // Methods
 app.use('/pricing', pricing);
+app.use('/getPrice', getPrice);
 app.use('/order', order);
 app.use('/status', status);
 

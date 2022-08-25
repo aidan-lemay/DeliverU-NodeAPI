@@ -13,13 +13,26 @@
     "id": "{String order ID to be passed in future queries regarding this order}",
     "diningAddress": "Confirmation of the pickup location",
     "deliveryAddress": "Confirmation of the delivery location",
-    "orderCost": {Integer, pickup cost to be charged to customer}
+    "orderCost": {Float, pickup cost to be charged to customer}
 }
 ```
 
 ## Current Location Codes
 - Rochester Institute of Technology: 2760
 - University of North Carolina, Chapel Hill: 5816
+
+## Get Price Endpoint (/getPrice)
+- Request Body:
+```
+{
+    "id": "{String, value from /pricing of the order you want pricing information from}"
+}
+```
+- Response Body:
+{
+    "id": "{String, confirmation of submitted order ID to be used in future calls}",
+    "orderCost": {Float, pickup cost to be charged to customer}
+}
 
 ## Order Endpoint (/order)
 - Request Body:

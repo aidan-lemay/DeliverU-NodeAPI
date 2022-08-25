@@ -13,6 +13,11 @@ let gDin = null;
 let gDist = null;
 
 // Data Validation Functions
+async function round(num) {
+    var m = Number((Math.abs(num) * 100).toPrecision(15));
+    return Math.round(m) / 100 * Math.sign(num);
+}
+
 async function checkLocation(locCode) {
     let loc = await Locations.find({"locationCode": locCode}, {_id: 0});
 
@@ -81,19 +86,19 @@ async function costCalculate() {
     let basePrice = 6.00 + Math.random() * (0.01 - 0.50) + 0.01;
 
     if (gDist < 800) { // Less than 1/2 Mile
-        return Promise.resolve(basePrice);
+        return Promise.resolve(round(basePrice));
     }
     else if (gDist > 800 && gDist < 1600) { // Greater than 1/2 Mile but less than 1 Mile
-        return Promise.resolve(basePrice + 1.25);
+        return Promise.resolve(round(basePrice + 1.25));
     }
     else if (gDist > 1600 && gDist < 2400) { // Greater than 1 Mile but less than 1.5 Mile
-        return Promise.resolve(basePrice + 2.50);
+        return Promise.resolve(round(basePrice + 2.50));
     }
     else if (gDist > 2400 && gDist < 3200) { // Greater than 1.5 Mile but less than 2 Mile
-        return Promise.resolve(basePrice + 3.75);
+        return Promise.resolve(round(basePrice + 3.75));
     }
     else if (gDist > 3200 && gDist < 8000) {
-        return Promise.resolve(basePrice + 5.00);
+        return Promise.resolve(round(basePrice + 5.00));
     }
 
 }
