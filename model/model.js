@@ -13,6 +13,11 @@ const orderSchema = new mongoose.Schema({
         required: true,
         type: String
     },
+    roomNumber: {
+        required: false,
+        type: String,
+        default: ""
+    },
     orderCost: {
         required: false,
         type: Number,
