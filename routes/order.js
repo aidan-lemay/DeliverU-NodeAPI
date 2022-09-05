@@ -8,28 +8,28 @@ let ObjectId = require("bson-objectid");
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
 
 // PROD Server
-// const channels = {
-//     2760: {
-//         "order-logging": "1011310921781612664", // ID of PRIVATE #order-logging
-//         "control-channel": "1011310943935942696", // ID of PRIVATE #bot-control
-//     },
-//     5816: {
-//         "order-logging": "1010554530976514110", // ID of PRIVATE #order-logging
-//         "control-channel": "1010554597548490773", // ID of PRIVATE #bot-control
-//     }
-// };
-
-// TEST Server
 const channels = {
     2760: {
-        "order-logging": "1013260148883591298", // ID of PRIVATE #order-logging
-        "control-channel": "1013260202616823978", // ID of PRIVATE #bot-control
+        "order-logging": "1011310921781612664", // ID of PRIVATE #order-logging
+        "control-channel": "1011310943935942696", // ID of PRIVATE #bot-control
     },
     5816: {
-        "order-logging": "1013260306308403301", // ID of PRIVATE #order-logging
-        "control-channel": "1013260332556361738", // ID of PRIVATE #bot-control
+        "order-logging": "1010554530976514110", // ID of PRIVATE #order-logging
+        "control-channel": "1010554597548490773", // ID of PRIVATE #bot-control
     }
 };
+
+// TEST Server
+// const channels = {
+//     2760: {
+//         "order-logging": "1013260148883591298", // ID of PRIVATE #order-logging
+//         "control-channel": "1013260202616823978", // ID of PRIVATE #bot-control
+//     },
+//     5816: {
+//         "order-logging": "1013260306308403301", // ID of PRIVATE #order-logging
+//         "control-channel": "1013260332556361738", // ID of PRIVATE #bot-control
+//     }
+// };
 
 client.on('ready', async () => {
     console.log(`Logged in as ${client.user.tag}!`);
