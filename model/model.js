@@ -5,6 +5,10 @@ const orderSchema = new mongoose.Schema({
         required: true,
         type: Number
     },
+    mobileOrderNumber: {
+        required: false,
+        type: Number
+    },
     diningAddress: {
         required: true,
         type: String
@@ -12,6 +16,11 @@ const orderSchema = new mongoose.Schema({
     deliveryAddress: {
         required: true,
         type: String
+    },
+    roomNumber: {
+        required: false,
+        type: String,
+        default: ""
     },
     orderCost: {
         required: false,

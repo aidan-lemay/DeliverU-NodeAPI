@@ -40,6 +40,8 @@
 {
     "id": "{String, value from /pricing of the order you want to place}",
     "data": {
+        "mobileOrderNumber": {Integer, order number provided by mobile ordering system},
+        "roomNumber": "{String, room location inside of delivery location}",
         "customerName": "{String, name of customer for delivery}",
         "customerPhone": {Integer, customers 10 digit phone number},
         "customerInstructions": "{String, any special instructions from the customer for delivery. Can be empty but must be included.}"
