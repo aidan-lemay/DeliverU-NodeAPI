@@ -1,3 +1,4 @@
+# API Endpoint Integration Instructions
 ## Pricing Endpoint (/pricing)
 - Request Body:
 ```
@@ -74,3 +75,13 @@
     "completeTime": {Datetime, the time the order was dropped and marked as completed by a runner}
 }
 ```
+
+# Instructions for Adding a new School
+## In the API Repository:
+- Find the ETS reporting code of the school you would like to add
+- Inside of routes/order.js, add the school with the ETS code as the key name and the channel ID's of the requested Discord channels in the same format as the existing schools inside the channels array on line 11
+
+## In the Python Control Repository:
+- Inside of control.py, on line 35, add the schools ETS code and name in the variable following the existing format
+- On line 59, add the location codes as "and" parameters in the same format as what exists
+- Inside of storage.py (Must be created manually, not tracked by GitHub), add the ETS code and requested variables from Discord and Twillio in the same format as existing
