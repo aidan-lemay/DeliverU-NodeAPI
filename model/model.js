@@ -5,6 +5,10 @@ const orderSchema = new mongoose.Schema({
         required: true,
         type: Number
     },
+    mobileOrderNumber: {
+        required: false,
+        type: Number
+    },
     diningAddress: {
         required: true,
         type: String
