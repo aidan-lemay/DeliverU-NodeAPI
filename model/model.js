@@ -39,7 +39,7 @@ const orderSchema = new mongoose.Schema({
     },
     customerPhone: {
         required: false,
-        type: Number,
+        type: String,
         default: null
     },
     customerInstructions: {
