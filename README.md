@@ -69,7 +69,7 @@
 ```
 {
     "orderID": "{String, confirmation of submitted order ID}",
-    "dasherAssigned": {Boolean, whether or not someone has been assigned to the pickup order},
+    "runnerAssigned": {Boolean, whether or not someone has been assigned to the pickup order},
     "acceptTime": {Datetime, the time the order was accepted by a runner},
     "orderComplete": {Boolean, whether the order has been dropped off and marked as completed},
     "completeTime": {Datetime, the time the order was dropped and marked as completed by a runner}
@@ -85,3 +85,6 @@
 - Inside of control.py, on line 35, add the schools ETS code and name in the variable following the existing format
 - On line 59, add the location codes as "and" parameters in the same format as what exists
 - Inside of storage.py (Must be created manually, not tracked by GitHub), add the ETS code and requested variables from Discord and Twillio in the same format as existing
+
+## In the MongoDB Database:
+- Inside of the locationCodes collection, add the ETS code, name of the school, and a primary central address to compare all future delivery addresses to
