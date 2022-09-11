@@ -18,12 +18,12 @@ const channels = {
         "control-channel": "1010554597548490773", // ID of PRIVATE #bot-control
     },
     2928: { // UB
-        "order-logging": "1010554530976514110", // ID of PRIVATE #order-logging
-        "control-channel": "1010554597548490773", // ID of PRIVATE #bot-control  
+        "order-logging": "1017154731753345126", // ID of PRIVATE #order-logging
+        "control-channel": "1017154744579539044", // ID of PRIVATE #bot-control  
     },
     2925: { // U of R
-        "order-logging": "1010554530976514110", // ID of PRIVATE #order-logging
-        "control-channel": "1010554597548490773", // ID of PRIVATE #bot-control  
+        "order-logging": "1017154688644284437", // ID of PRIVATE #order-logging
+        "control-channel": "1017154702930092092", // ID of PRIVATE #bot-control  
     }
 };
 
