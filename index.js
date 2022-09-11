@@ -25,6 +25,8 @@ db.once('connected', () => {
 })
 
 // Methods
+app.use('/login', login);
+app.use('/register', register);
 app.use('/pricing', pricing);
 app.use('/getPrice', getPrice);
 app.use('/order', order);

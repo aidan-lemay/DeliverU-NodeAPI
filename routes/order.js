@@ -9,25 +9,41 @@ const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
 
 // PROD Server
 const channels = {
-    2760: {
+    2760: { // RIT
         "order-logging": "1011310921781612664", // ID of PRIVATE #order-logging
         "control-channel": "1011310943935942696", // ID of PRIVATE #bot-control
     },
-    5816: {
+    5816: { // UNC
         "order-logging": "1010554530976514110", // ID of PRIVATE #order-logging
         "control-channel": "1010554597548490773", // ID of PRIVATE #bot-control
+    },
+    2928: { // UB
+        "order-logging": "1010554530976514110", // ID of PRIVATE #order-logging
+        "control-channel": "1010554597548490773", // ID of PRIVATE #bot-control  
+    },
+    2925: { // U of R
+        "order-logging": "1010554530976514110", // ID of PRIVATE #order-logging
+        "control-channel": "1010554597548490773", // ID of PRIVATE #bot-control  
     }
 };
 
 // TEST Server
 // const channels = {
-//     2760: {
+//     2760: { // RIT
 //         "order-logging": "1013260148883591298", // ID of PRIVATE #order-logging
 //         "control-channel": "1013260202616823978", // ID of PRIVATE #bot-control
 //     },
-//     5816: {
+//     5816: { // UNC
 //         "order-logging": "1013260306308403301", // ID of PRIVATE #order-logging
 //         "control-channel": "1013260332556361738", // ID of PRIVATE #bot-control
+//     },
+//     2928: { // UB
+//         "order-logging": "1017411483803582545", // ID of PRIVATE #order-logging
+//         "control-channel": "1017411509485305919", // ID of PRIVATE #bot-control
+//     },
+//     2925: { // U of R
+//         "order-logging": "1017411585469337610", // ID of PRIVATE #order-logging
+//         "control-channel": "1017411607556530267", // ID of PRIVATE #bot-control
 //     }
 // };
 
