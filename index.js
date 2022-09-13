@@ -6,6 +6,10 @@ const app = express();
 const mongoString = process.env.DATABASE_URL;
 
 // Routes
+const auth = require('./middleware/auth');
+const login = require('./auth/login');
+const register = require('./auth/register');
+const reports = require('./routes/reports');
 const pricing = require('./routes/pricing');
 const getPrice = require('./routes/getPrice');
 const order = require('./routes/order');
@@ -25,10 +29,13 @@ db.once('connected', () => {
 })
 
 // Methods
-app.use('/pricing', pricing);
-app.use('/getPrice', getPrice);
-app.use('/order', order);
-app.use('/status', status);
+app.use('/login', login);
+app.use('/register', register);
+app.use('/reports', reports)
+app.use('/pricing', auth, pricing);
+app.use('/getPrice', auth, getPrice);
+app.use('/order', auth, order);
+app.use('/status', auth, status);
 
 app.listen(3000, () => {
     console.log(`Server Started at ${3000}`)

@@ -117,8 +117,24 @@ const clockedSchema = new mongoose.Schema({
 
 })
 
+const UserSchema = new mongoose.Schema({
+    application_name: {
+        required: true,
+        type: String
+    },
+    email: {
+        required: true,
+        type: String
+    },
+    password: {
+        required: true,
+        type: String
+    }
+})
+
+const User = mongoose.model('applications', UserSchema)
 const Orders = mongoose.model('orders', orderSchema)
 const Locations = mongoose.model('locationCodes', locationSchema)
 const Clocked = mongoose.model('clockedIn', clockedSchema)
 
-module.exports = {Orders, Locations, Clocked}
+module.exports = {User, Orders, Locations, Clocked}
