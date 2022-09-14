@@ -123,9 +123,37 @@ const UserSchema = new mongoose.Schema({
     }
 }, {collection: 'applications'})
 
+const ClockedSchema = new mongoose.Schema({
+    user_id: {
+        required: true,
+        type: Number
+    },
+    user_name: {
+        required: true,
+        type: String
+    },
+    user_discriminator: {
+        required: true,
+        type: String
+    },
+    clockedIn: {
+        required: true,
+        type: Boolean
+    },
+    in_time: {
+        required: true,
+        type: Date
+    },
+    out_time: {
+        required: true,
+        type: Date
+    }
+}, {collection: 'clockedIn'})
+
 const User = mongoose.model('applications', UserSchema)
 const Orders = mongoose.model('orders', orderSchema)
 const Locations = mongoose.model('locationCodes', locationSchema)
 const Runners = mongoose.model('dasherInformation', InformationSchema)
+const Clocked = mongoose.model('clockedIns', ClockedSchema)
 
-module.exports = {User, Orders, Locations, Runners}
+module.exports = {User, Orders, Locations, Runners, Clocked}

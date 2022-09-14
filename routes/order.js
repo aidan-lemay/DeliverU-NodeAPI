@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Orders, Locations, Clocked } = require('../model/model');
+const { Orders, Locations, Clocked, Runners } = require('../model/model');
 require('dotenv').config(); //initialize dotenv
 const Discord = require('discord.js'); //import discord.js
 let ObjectId = require("bson-objectid");
@@ -78,20 +78,26 @@ router.post('/', async (req, res) => {
 
     // ERROR CHECKING!!!!!
     const order = await Orders.findOne({ _id: ObjectId(id) });
+    const runners = await Clocked.count({ clockedIn: true });
 
-    if (order == undefined) {
-        res.status(500).json({ error: "Supplied ID was not found in the database" });
+    if (runners > 0) {
+        if (order == undefined) {
+            res.status(500).json({ error: "Supplied ID was not found in the database" });
+        }
+        else {
+            Orders.updateOne({ "_id": id }, updatedData, function (err, result) {
+                if (err !== null) {
+                    res.status(500).json(err);
+                }
+                else {
+                    res.status(200).json({ "id": id, "orderAccepted": true });
+                    runDispatch(id, order.locationCode);
+                }
+            });
+        }
     }
     else {
-        Orders.updateOne({ "_id": id }, updatedData, function (err, result) {
-            if (err !== null) {
-                res.status(500).json(err);
-            }
-            else {
-                res.status(200).json({ "id": id, "orderAccepted": "True" });
-                runDispatch(id, order.locationCode);
-            }
-        });
+        res.status(503).json({ "orderAccepted": false, error: "No Runners Currently Available, Please Try Again In A Few Minutes - Runners Have Been Notified Of Your Order" });
     }
 
 
