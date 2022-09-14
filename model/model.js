@@ -72,7 +72,7 @@ const orderSchema = new mongoose.Schema({
         default: null
     }
 
-})
+}, {collection: 'orders'})
 
 const locationSchema = new mongoose.Schema({
     locationName: {
@@ -87,35 +87,26 @@ const locationSchema = new mongoose.Schema({
         required: true,
         type: String
     }
-})
+}, {collection: 'locationcodes'})
 
-const clockedSchema = new mongoose.Schema({
+const InformationSchema = new mongoose.Schema({
     user_id: {
         required: true,
         type: Number
     },
-    user_name: {
+    user_firstname: {
         required: true,
         type: String
     },
-    user_discriminator: {
+    user_lastname: {
         required: true,
         type: String
     },
-    clockedIn: {
+    user_locationcode: {
         required: true,
-        type: Boolean
-    },
-    in_time: {
-        required: true,
-        type: Date
-    },
-    out_time: {
-        required: true,
-        type: Date
+        type: String
     }
-
-})
+}, {collection: 'dasherInformation'})
 
 const UserSchema = new mongoose.Schema({
     application_name: {
@@ -130,11 +121,11 @@ const UserSchema = new mongoose.Schema({
         required: true,
         type: String
     }
-})
+}, {collection: 'applications'})
 
 const User = mongoose.model('applications', UserSchema)
 const Orders = mongoose.model('orders', orderSchema)
 const Locations = mongoose.model('locationCodes', locationSchema)
-const Clocked = mongoose.model('clockedIn', clockedSchema)
+const Runners = mongoose.model('dasherInformation', InformationSchema)
 
-module.exports = {User, Orders, Locations, Clocked}
+module.exports = {User, Orders, Locations, Runners}
