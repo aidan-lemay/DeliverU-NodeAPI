@@ -1,3 +1,5 @@
+# API Endpoint Integration Instructions
+
 ## Login Endpoint (/login)
 - Request Body:
 ```
@@ -33,6 +35,7 @@
     "token": "{String, jwt token for ALL future requests}"
 }
 ```
+
 ## Pricing Endpoint (/pricing)
 - Request Header:
 ```
@@ -96,7 +99,7 @@
         "mobileOrderNumber": {Integer, order number provided by mobile ordering system},
         "roomNumber": "{String, room location inside of delivery location}",
         "customerName": "{String, name of customer for delivery}",
-        "customerPhone": {Integer, customers 10 digit phone number},
+        "customerPhone": {String, customers 10 digit phone number},
         "customerInstructions": "{String, any special instructions from the customer for delivery. Can be empty but must be included.}"
     }
     
@@ -134,7 +137,7 @@
 ```
 {
     "orderID": "{String, confirmation of submitted order ID}",
-    "dasherAssigned": {Boolean, whether or not someone has been assigned to the pickup order},
+    "runnerAssigned": {Boolean, whether or not someone has been assigned to the pickup order},
     "acceptTime": {Datetime, the time the order was accepted by a runner},
     "orderComplete": {Boolean, whether the order has been dropped off and marked as completed},
     "completeTime": {Datetime, the time the order was dropped and marked as completed by a runner}
@@ -167,3 +170,16 @@
     }
 }
 ```
+
+# Instructions for Adding a new School
+## In the API Repository:
+- Find the ETS reporting code of the school you would like to add
+- Inside of routes/order.js, add the school with the ETS code as the key name and the channel ID's of the requested Discord channels in the same format as the existing schools inside the channels array on line 11
+
+## In the Python Control Repository:
+- Inside of control.py, on line 35, add the schools ETS code and name in the variable following the existing format
+- On line 59, add the location codes as "and" parameters in the same format as what exists
+- Inside of storage.py (Must be created manually, not tracked by GitHub), add the ETS code and requested variables from Discord and Twillio in the same format as existing
+
+## In the MongoDB Database:
+- Inside of the locationCodes collection, add the ETS code, name of the school, and a primary central address to compare all future delivery addresses to
