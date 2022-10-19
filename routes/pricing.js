@@ -79,10 +79,6 @@ async function checkDelAddress(delAddr) {
 }
 
 async function costCalculate() {
-    const time = new Date;
-    const volume = await Orders.find({"orderComplete": false}).count(); // Number of Unfufilled Orders
-    const online = await Clocked.find({"clockedIn": true}).count(); // Number of Dashers
-
     let basePrice = 6.00 + Math.random() * (0.01 - 0.50) + 0.01;
 
     if (gDist < 800) { // Less than 1/2 Mile

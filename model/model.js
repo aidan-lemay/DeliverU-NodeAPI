@@ -72,7 +72,7 @@ const orderSchema = new mongoose.Schema({
         default: null
     }
 
-})
+}, {collection: 'orders'})
 
 const locationSchema = new mongoose.Schema({
     locationName: {
@@ -87,9 +87,43 @@ const locationSchema = new mongoose.Schema({
         required: true,
         type: String
     }
-})
+}, {collection: 'locationcodes'})
 
-const clockedSchema = new mongoose.Schema({
+const InformationSchema = new mongoose.Schema({
+    user_id: {
+        required: true,
+        type: Number
+    },
+    user_firstname: {
+        required: true,
+        type: String
+    },
+    user_lastname: {
+        required: true,
+        type: String
+    },
+    user_locationcode: {
+        required: true,
+        type: String
+    }
+}, {collection: 'dasherInformation'})
+
+const UserSchema = new mongoose.Schema({
+    application_name: {
+        required: true,
+        type: String
+    },
+    email: {
+        required: true,
+        type: String
+    },
+    password: {
+        required: true,
+        type: String
+    }
+}, {collection: 'applications'})
+
+const ClockedSchema = new mongoose.Schema({
     user_id: {
         required: true,
         type: Number
@@ -114,11 +148,12 @@ const clockedSchema = new mongoose.Schema({
         required: true,
         type: Date
     }
+}, {collection: 'clockedIn'})
 
-})
-
+const User = mongoose.model('applications', UserSchema)
 const Orders = mongoose.model('orders', orderSchema)
 const Locations = mongoose.model('locationCodes', locationSchema)
-const Clocked = mongoose.model('clockedIn', clockedSchema)
+const Runners = mongoose.model('dasherInformation', InformationSchema)
+const Clocked = mongoose.model('clockedIns', ClockedSchema)
 
-module.exports = {Orders, Locations, Clocked}
+module.exports = {User, Orders, Locations, Runners, Clocked}
